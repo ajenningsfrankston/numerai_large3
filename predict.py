@@ -15,7 +15,7 @@ ERA_COL = "era"
 TARGET_COL = "target_nomi_20"
 DATA_TYPE_COL = "data_type"
 EXAMPLE_PREDS_COL = "example_preds"
-PREDICTION_NAME = f"prediction_{TOURNAMENT_NAME}"
+PREDICTION_NAME = "prediction"
 
 MODEL_FOLDER = "models"
 
