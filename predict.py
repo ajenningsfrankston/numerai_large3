@@ -76,10 +76,11 @@ napi = NumerAPI(public_id=id,secret_key=key)
 
 path =  f"tournament_predictions_{current_round}.csv"
 
-#print('uploading')
-#submission_string = napi.upload_predictions(file_path=path,version=2)
-#print(submission_string)
+path =  "predictions.csv"
 
+print('uploading')
+submission_string = napi.upload_predictions(file_path=path,version=2)
+print(submission_string)
 
 
 
