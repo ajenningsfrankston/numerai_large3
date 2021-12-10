@@ -9,6 +9,8 @@ from pathlib import Path
 from sklearn.linear_model import Ridge
 from sklearn.feature_selection import SelectKBest, f_regression
 
+import pyarrow.parquet as pq
+
 
 TOURNAMENT_NAME= "first_large"
 ERA_COL = "era"
