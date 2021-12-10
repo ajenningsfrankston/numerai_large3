@@ -36,6 +36,10 @@ print('Downloading dataset files...')
 
 napi.download_dataset("numerai_tournament_data.parquet", f"tournament_data_{current_round}.parquet")
 napi.download_dataset("numerai_validation_data.parquet", f"validation_data.parquet")
+
+validation_data = pq.read_table('validation_data.parquet').to_pandas()
+tournament_data = pq.read_table(f"tournament_data_{current_round}.parquet").to_pandas()
+
 napi.download_dataset("example_validation_predictions.parquet", "example_validation_predictions.parquet")
 
 model_name = f"model_target"
@@ -49,17 +53,17 @@ model_expected_features = selected_features
 
 read_columns = model_expected_features + [ERA_COL, DATA_TYPE_COL, TARGET_COL]
 
-validation_data = pd.read_parquet('validation_data.parquet', columns=read_columns)
+#validation_data = pd.read_csv('validation_data.csv', usecols=read_columns)
 validation_data[PREDICTION_NAME] = model.predict(validation_data[model_expected_features])
 
-validation_preds = pd.read_parquet('example_validation_predictions.parquet')
+validation_preds = pq.read_table("example_validation_predictions.parquet").to_pandas()
 validation_data[EXAMPLE_PREDS_COL] = validation_preds["prediction"]
 
 validation_correlations = validation_data.groupby("era").apply(score)
 print(f"On validation the correlation has mean {validation_correlations.mean()} and std {validation_correlations.std()}")
 
 
-tournament_data = pd.read_parquet(f'tournament_data_{current_round}.parquet')
+#tournament_data = pd.read_csv(f'tournament_data_{current_round}.csv')
 
 print('Predicting on tournament data')
 tournament_data[PREDICTION_NAME] = model.predict(tournament_data[model_expected_features])
