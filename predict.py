@@ -11,6 +11,8 @@ from sklearn.feature_selection import SelectKBest, f_regression
 
 import pyarrow.parquet as pq
 
+import os
+
 
 TOURNAMENT_NAME= "first_large"
 ERA_COL = "era"
