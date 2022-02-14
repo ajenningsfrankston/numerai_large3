@@ -88,6 +88,11 @@ print('uploading')
 submission_string = napi.upload_predictions(file_path=path,version=2)
 print(submission_string)
 
+#tidy up by removing per tournament files
+
+os.remove(f"tournament_data_{current_round}.parquet")
+
+
 
 
 
