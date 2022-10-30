@@ -16,7 +16,7 @@ import os
 
 TOURNAMENT_NAME= "first_large"
 ERA_COL = "era"
-TARGET_COL = "target_nomi_20"
+TARGET_COL = "target_nomi_v4_20"
 DATA_TYPE_COL = "data_type"
 EXAMPLE_PREDS_COL = "example_preds"
 PREDICTION_NAME = "prediction"
@@ -38,13 +38,18 @@ current_round = napi.get_current_round(tournament=8)  # tournament 8 is the prim
 
 print('Downloading dataset files...')
 
-napi.download_dataset("numerai_tournament_data.parquet", f"tournament_data_{current_round}.parquet")
-napi.download_dataset("numerai_validation_data.parquet", f"validation_data.parquet")
+#napi.download_dataset("numerai_tournament_data.parquet", f"tournament_data_{current_round}.parquet")
+#napi.download_dataset("numerai_validation_data.parquet", f"validation_data.parquet")
+
+napi.download_dataset("v4/train.parquet","training_data.parquet")
+napi.download_dataset("v4/validation.parquet",f"validation_data.parquet")
+napi.download_dataset("v4/live.parquet", f"tournament_data_{current_round}.parquet")
+napi.download_dataset("v4/validation_example_preds.parquet","example_validation_predictions.parquet")
 
 validation_data = pq.read_table('validation_data.parquet').to_pandas()
 tournament_data = pq.read_table(f"tournament_data_{current_round}.parquet").to_pandas()
 
-napi.download_dataset("example_validation_predictions.parquet", "example_validation_predictions.parquet")
+#napi.download_dataset("example_validation_predictions.parquet", "example_validation_predictions.parquet")
 
 model_name = f"model_target"
 print(f"Checking for existing model '{model_name}'")
