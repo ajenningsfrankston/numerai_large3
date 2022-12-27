@@ -23,8 +23,11 @@ PREDICTION_NAME = "prediction"
 
 MODEL_FOLDER = "models"
 
+id = "OML65REYFDPC5O7N22XCRP44BG2M74XH"
+key = "YSTL455VERL7WZ4D7OQ6XEYEQN2MRCCICBMILNFP3DUZC4MSAS2WSH2MV7ED6WB3"
 
-napi = NumerAPI()
+napi = NumerAPI(public_id=id,secret_key=key)
+
 
 # utilities
 
@@ -65,11 +68,6 @@ tournament_data[PREDICTION_NAME] = model.predict(tournament_data[model_expected_
 
 tournament_data[PREDICTION_NAME].to_csv("predictions.csv")
 
-
-id = "OML65REYFDPC5O7N22XCRP44BG2M74XH"
-key = "YSTL455VERL7WZ4D7OQ6XEYEQN2MRCCICBMILNFP3DUZC4MSAS2WSH2MV7ED6WB3"
-
-napi = NumerAPI(public_id=id,secret_key=key)
 
 # print('uploading')
 
