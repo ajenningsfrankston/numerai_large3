@@ -11,7 +11,7 @@ from sklearn.feature_selection import SelectKBest, f_regression
 
 import pyarrow.parquet as pq
 
-import os
+import os,sys
 
 
 TOURNAMENT_NAME= "first_large"
@@ -32,6 +32,11 @@ from utils import load_stuff, save_stuff
 
 def score(df):
     return df[[TARGET_COL, PREDICTION_NAME]].corr(method="spearman")[TARGET_COL][PREDICTION_NAME]
+
+round_open = napi.check_round_open()
+
+if not round_open:
+    sys.exit("round not open")
 
 
 current_round = napi.get_current_round()  # tournament 8 is the primary Numerai Tournament
