@@ -36,7 +36,7 @@ from utils import load_stuff, save_stuff
 def score(df):
     return df[[TARGET_COL, PREDICTION_NAME]].corr(method="spearman")[TARGET_COL][PREDICTION_NAME]
 
-round_open = napi.check_round_open()
+round_open = napi.check_new_round()
 
 if not round_open:
     sys.exit("round not open")
